@@ -3,8 +3,9 @@ package concessionario.database;
 import java.util.Collection;
 
 import concessionario.core.Dipendente;
+import concessionario.core.Veicolo;
 
-public class TableVeicoliImplementation implements TableInterface<Integer, Veicolo> {
+public class TableVeicoliImplementation implements TableInterface<String, Veicolo> {
 
 	private DriverInterface<Veicolo> driver;
 	
@@ -30,7 +31,7 @@ public class TableVeicoliImplementation implements TableInterface<Integer, Veico
 	}
 
 	@Override
-	public Veicolo get(Integer k) {
+	public Veicolo get(String k) {
 		Collection<Veicolo> veicoli = driver.read();
 		for(Veicolo veicolo : veicoli) {
 			if(veicolo.getTarga() == k) {
@@ -42,22 +43,36 @@ public class TableVeicoliImplementation implements TableInterface<Integer, Veico
 	}
 
 	@Override
-	public Dipendente update(Dipendente v) {
-		
+	public Veicolo update(Veicolo v) {
+		Collection<Veicolo> veicoli = driver.read();
+		for (Veicolo veicolo : veicoli) {
+			if (veicolo.getTarga() == v.getTarga()) {
+				veicolo.setPrezzo(v.getPrezzo());
+				driver.write(veicoli);
+				return veicolo;
+			}
+		}
 		
 		return null;
+	} 
+
+	@Override
+	public Boolean delete(String k) {
+		Collection<Veicolo> veicoli = driver.read();
+		for (Veicolo veicolo : veicoli) {
+			if(veicolo.getTarga() == k) {
+				veicoli.remove(veicolo);
+				driver.write(veicoli);
+				return true;
+			}
+		}
+		return false;
 	}
 
 	@Override
-	public Boolean delete(Integer k) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	public void setDriver(DriverInterface<Veicolo> d) {
+		this.driver = d;
+		}
 
-	@Override
-	public void setDriver(DriverInterface<Dipendente> d) {
-		// TODO Auto-generated method stub
-		
-	}
 
 }
