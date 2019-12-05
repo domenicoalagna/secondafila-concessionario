@@ -5,12 +5,25 @@ public class Dipendente {
 	private Integer cid;
 	private String nome;
 	private String cognome;
+	private boolean amministratore;
 	
-	public Dipendente(Integer cid, String nome, String cognome) {
+	public Dipendente(Integer cid, String nome, String cognome, boolean amministratore ) {
 		this.cid = cid;
 		this.nome = nome;
 		this.cognome = cognome;
+		this.amministratore= amministratore;
+		
 	}
+	
+	public Dipendente(Integer cid, String nome, String cognome ) {
+		this.cid = cid;
+		this.nome = nome;
+		this.cognome = cognome;
+		this.amministratore= false;
+		
+	}
+	
+	
 	
 	public Integer getCid() {
 		return cid;
@@ -26,6 +39,14 @@ public class Dipendente {
 
 	public String toString() {
 		return this.cid + ". " + this.nome + " " + this.cognome;
+	}
+
+	public boolean isAmministratore() {
+		return amministratore;
+	}
+
+	public void setAmministratore(boolean amministratore) {
+		this.amministratore = amministratore;
 	}
 	
 }
