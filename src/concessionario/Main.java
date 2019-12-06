@@ -1,24 +1,18 @@
 package concessionario;
 
-import concessionario.core.Dipendente;
-import concessionario.database.DriverInterface;
-import concessionario.database.DriverMemoryImplementation;
-import concessionario.database.TableDipendenteImplementation;
-import concessionario.database.TableInterface;
 
-public class Main {
+import concessionario.menu.menuTot;
 
-	public static void main(String[] args) {
-		DriverInterface<Dipendente> driver = new DriverMemoryImplementation();
-		TableInterface<Integer, Dipendente> tabellaDipendente = new TableDipendenteImplementation(driver);
+
+public class Main
+{
 		
-		tabellaDipendente.insert(new Dipendente(1, "Mario", "Rossi"));
-		tabellaDipendente.insert(new Dipendente(10, "Mario", "Rossi"));
-		tabellaDipendente.insert(new Dipendente(2, "Mario", "Rossi"));
+	public static void main(String[] args) 
+	{
 		
-		for(Dipendente d : tabellaDipendente.get()) {
-			System.out.println(d);
-		}
+		menuTot menu= new menuTot();
+		menu.menuIniziale();
+		
+	
 	}
-
 }

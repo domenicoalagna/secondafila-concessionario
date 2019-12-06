@@ -24,5 +24,4 @@ public class DriverMemoryImplementation<V> implements DriverInterface {
 		List<V> newDb = new ArrayList(this.db);
 		return newDb;
 	}
-
 }
