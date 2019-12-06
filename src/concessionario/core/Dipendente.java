@@ -38,7 +38,7 @@ public class Dipendente {
 	}
 
 	public String toString() {
-		return this.cid + ". " + this.nome + " " + this.cognome;
+		return this.cid + ". " + this.nome + " " + this.cognome + " AMM: " + this.amministratore;
 	}
 
 	public boolean isAmministratore() {
@@ -49,4 +49,7 @@ public class Dipendente {
 		this.amministratore = amministratore;
 	}
 	
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
 }

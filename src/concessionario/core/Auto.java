@@ -6,7 +6,7 @@ public class Auto  extends Veicolo {
 	
 
 	public Auto(String targa, String produttore, Double prezzo, String modello, String alimentazione,Integer porte) {
-		super(targa, produttore, prezzo, modello, alimentazione);
+		super(produttore, targa, prezzo, modello, alimentazione);
 		this.porte=porte;
 		
 	}
