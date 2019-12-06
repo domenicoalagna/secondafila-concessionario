@@ -2,7 +2,9 @@ package concessionario.core;
 
 import java.util.*;
 
-public abstract class Veicolo {
+import concessionario.database.csv.CSVSerializerInterface;
+
+public abstract class Veicolo  implements CSVSerializerInterface {
 
 	private String targa;
 	private String produttore;
@@ -27,6 +29,21 @@ public abstract class Veicolo {
 		System.out.println("Inserire alimentazione: ");
 		this.alimentazione = input.next();
 
+	}
+	
+	
+public Veicolo(String targa, String produttore,Integer prezzo, String modello, String alimentazione)
+	{
+		this.targa=targa;
+		this.produttore=produttore;
+		this.prezzo=prezzo;
+		this.modello=modello;
+		this.alimentazione=alimentazione;
+	}
+	
+	
+	public Veicolo() {
+		
 	}
 
 	public String getTarga() {
@@ -60,5 +77,6 @@ public abstract class Veicolo {
 				+"MODELLO: "+this.modello+"\n"
 				+"ALIMENTAZIONE: "+this.alimentazione);
 	}
+	
 
 }

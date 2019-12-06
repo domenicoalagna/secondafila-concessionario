@@ -9,15 +9,16 @@ import concessionario.database.DriverInterface;
 import concessionario.database.DriverMemoryImplementation;
 import concessionario.database.TableDipendenteImplementation;
 import concessionario.database.TableVeicoloImplementation;
+import concessionario.database.csv.DriverCSVFileImplementation;
 import concessionario.database.TableInterface;
 
 
 public class menuTot implements MenuInterface
 {
-	DriverInterface<Dipendente> driverDipendenti = new DriverMemoryImplementation();
+	DriverInterface<Dipendente> driverDipendenti = new DriverCSVFileImplementation("C:\\Users\\First\\git\\concessionario\\src\\concessionario\\database\\csv\\memoriaFile.csv");
 	TableInterface<Integer, Dipendente> tabellaDipendente = new TableDipendenteImplementation(driverDipendenti);
 	
-	DriverInterface<Veicolo> driverVeicoli = new DriverMemoryImplementation();
+	DriverInterface<Veicolo> driverVeicoli = new DriverCSVFileImplementation("C:\\Users\\First\\git\\concessionario\\src\\concessionario\\database\\csv\\memoriaFile2.csv");
 	TableInterface<String, Veicolo> tabellaVeicolo = new TableVeicoloImplementation(driverVeicoli);
 	
 	Scanner input= new Scanner(System.in);

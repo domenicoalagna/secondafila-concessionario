@@ -1,7 +1,7 @@
 
 package concessionario.core;
 
-
+import java.util.*;
 import concessionario.database.csv.CSVSerializerInterface;
 
 public class Dipendente implements CSVSerializerInterface {
