@@ -1,5 +1,7 @@
+
 package concessionario.menu;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 import concessionario.core.Dipendente;
 import concessionario.core.Veicolo;
@@ -12,87 +14,90 @@ import concessionario.database.TableVeicoloImplementation;
 import concessionario.database.csv.DriverCSVFileImplementation;
 import concessionario.database.TableInterface;
 
-
-public class menuTot implements MenuInterface
-{
-	DriverInterface<Dipendente> driverDipendenti = new DriverCSVFileImplementation("C:\\Users\\First\\git\\concessionario\\src\\concessionario\\database\\csv\\memoriaFile.csv");
+public class menuTot implements MenuInterface {
+	DriverInterface<Dipendente> driverDipendenti = new DriverCSVFileImplementation(
+			"C:\\Users\\Utente\\git\\concessionario\\src\\concessionario\\database\\csv\\memoriaFile.csv");
 	TableInterface<Integer, Dipendente> tabellaDipendente = new TableDipendenteImplementation(driverDipendenti);
-	
-	DriverInterface<Veicolo> driverVeicoli = new DriverCSVFileImplementation("C:\\Users\\First\\git\\concessionario\\src\\concessionario\\database\\csv\\memoriaFile2.csv");
+
+	DriverInterface<Veicolo> driverVeicoli = new DriverCSVFileImplementation(
+			"C:\\Users\\Utente\\git\\concessionario\\src\\concessionario\\database\\csv\\memoriaFile2.csv");
 	TableInterface<String, Veicolo> tabellaVeicolo = new TableVeicoloImplementation(driverVeicoli);
-	
-	Scanner input= new Scanner(System.in);
-	
-	
-	
-	
-	
+
+	Scanner input = new Scanner(System.in);
+
 	@Override
-	public void menuIniziale()
-	{
+	public void menuIniziale() {
 		int scelta;
-		do 
-		{
-			System.out.println("	");	
-			System.out.println("Ciao! Che tipo di operatore sei?");
-			System.out.println("1. Cliente");
-			System.out.println("2. Amministratore sistema");
-			System.out.println("0. Esci");
-			scelta=input.nextInt();
-			switch (scelta)
-			{
-			case 0:
-				System.out.println("Arrivederci");
-				break;
-			case 1:
-				menuCliente();
-				break;
-			case 2:
-				menuAmministratore();
-				break;
-			default:
-				System.out.println("Scelta errata");
-				break;
+		boolean ok;
+		do {
+			ok = true;
+
+			try {
+				do {
+					System.out.println("	");
+					System.out.println("Ciao! Che tipo di operatore sei?");
+					System.out.println("1. Cliente");
+					System.out.println("2. Amministratore sistema");
+					System.out.println("0. Esci");
+					scelta = input.nextInt();
+					switch (scelta) {
+					case 0:
+						System.out.println("Arrivederci");
+						break;
+					case 1:
+						menuCliente();
+						break;
+					case 2:
+						menuAmministratore();
+						break;
+					default:
+						System.out.println("Scelta errata");
+						break;
+					}
+				} while (scelta != 0);
+
+			} catch (InputMismatchException e) {
+				input.nextLine();
+				System.out.println("Scelta errata, inserisci un numero intero");
+				ok = false;
+
 			}
-		}
-		while(scelta!=0);
-		
+		} while (!ok);
+
 	}
-	
-	
-	
+
 	@Override
-	public void menuCliente()
-	{
-Integer sceltaCliente;
+	public void menuCliente() {
+		Integer sceltaCliente;
+		boolean ok ;
 		
-		do
-		{
+		do {
+			ok = true;
+		
+		try {
+		
+		
+		do {
 			System.out.println("Scegli la tipologia di veicolo che vuoi comprare:");
 			System.out.println("1. AUTO");
 			System.out.println("2. MOTO");
 			System.out.println("0. Indietro");
-			sceltaCliente=input.nextInt();
-			
-			switch (sceltaCliente)
-			{
+			sceltaCliente = input.nextInt();
+
+			switch (sceltaCliente) {
 			case 0:
 				System.out.println("");
 				break;
 			case 1:
-				for(Veicolo v : tabellaVeicolo.get())
-				{
-					if(v instanceof Auto) 
-					{
-						System.out.println(v);		
+				for (Veicolo v : tabellaVeicolo.get()) {
+					if (v instanceof Auto) {
+						System.out.println(v);
 					}
 				}
 				break;
 			case 2:
-				for(Veicolo v : tabellaVeicolo.get())
-				{
-					if(v instanceof Moto) 
-					{
+				for (Veicolo v : tabellaVeicolo.get()) {
+					if (v instanceof Moto) {
 						System.out.println(v);
 					}
 				}
@@ -102,23 +107,36 @@ Integer sceltaCliente;
 				break;
 			}
 
+		} while (sceltaCliente != 0);
+
+	}
+		catch(InputMismatchException e) {
+			input.nextLine();
+			System.out.println("Scelta errata, inserisci un numero intero");
+			ok = false;
+			
 		}
-		while(sceltaCliente!=0);
-		
+		}
+		while (!ok);
 	}
 
 	@Override
-	public void menuAmministratore()
-	{
-		Dipendente d=null;
-		Veicolo v=null;
+	public void menuAmministratore() {
+		Dipendente d = null;
+		Veicolo v = null;
 		Integer val;
 		String val2;
 		Integer sceltaAmministratore;
+
+        boolean ok ;
 		
-		do
-		{
-			System.out.println("	");	
+		do {
+			ok = true;
+		
+		try {
+		
+		do {
+			System.out.println("	");
 			System.out.println("Che cosa vuoi fare?");
 			System.out.println("	");
 			System.out.println("---SEZIONE DIPENDENTI---");
@@ -138,68 +156,71 @@ Integer sceltaCliente;
 			System.out.println("10. Eliminare moto");
 			System.out.println("	");
 			System.out.println("0. Indietro");
-			sceltaAmministratore=input.nextInt();
-			
-			switch (sceltaAmministratore)
-			{
+			sceltaAmministratore = input.nextInt();
+
+			switch (sceltaAmministratore) {
 			case 0:
 				System.out.println("");
 				break;
 			case 1:
-				d=new Dipendente(input);
+				d = new Dipendente(input);
 				tabellaDipendente.insert(d);
 				break;
 			case 2:
-				d=new Dipendente(input);
+				d = new Dipendente(input);
 				tabellaDipendente.update(d);
 				break;
 			case 3:
 				System.out.println("Inserire il CID del dipendente: ");
-				val=input.nextInt();
+				val = input.nextInt();
 				tabellaDipendente.delete(val);
 				break;
 			case 4:
-				for(Dipendente x : tabellaDipendente.get())
-				{
+				for (Dipendente x : tabellaDipendente.get()) {
 					System.out.println(x);
 				}
 				break;
 			case 5:
-				v=new Auto(input);
+				v = new Auto(input);
 				tabellaVeicolo.insert(v);
 				break;
 			case 6:
-				v=new Auto(input);
+				v = new Auto(input);
 				tabellaVeicolo.update(v);
 				break;
 			case 7:
 				System.out.println("Inserire la targa dell'auto: ");
-				val2=input.next();
+				val2 = input.next();
 				tabellaVeicolo.delete(val2);
 				break;
 			case 8:
-				v=new Moto(input);
+				v = new Moto(input);
 				tabellaVeicolo.insert(v);
 				break;
 			case 9:
-				v=new Moto(input);
+				v = new Moto(input);
 				tabellaVeicolo.update(v);
 				break;
 			case 10:
 				System.out.println("Inserire la targa della moto: ");
-				val2=input.next();
+				val2 = input.next();
 				tabellaVeicolo.delete(val2);
 				break;
 			default:
 				System.out.println("Scelta errata");
 				break;
 			}
-		}
-		while(sceltaAmministratore!=0);
-		
-	}
+		} while (sceltaAmministratore != 0);
 
-	
-	
+	}
+		catch(InputMismatchException e) {
+			input.nextLine();
+			System.out.println("Scelta errata, inserisci un numero intero");
+			ok = false;
+			
+		}
+		}
+		while (!ok);
+	}
 
 }
