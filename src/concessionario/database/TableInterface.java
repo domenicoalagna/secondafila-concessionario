@@ -17,3 +17,4 @@ public interface TableInterface<K, V> {
 	public void setDriver(DriverInterface<V> d);
 
 }
+

@@ -1,19 +1,31 @@
 package concessionario.core;
 
+import java.util.*;
+
 public abstract class Veicolo {
 
 	private String targa;
 	private String produttore;
-	private Double prezzo;
+	private Integer prezzo;
 	private String modello;
 	private String alimentazione;
 
-	public Veicolo(String targa, String produttore, Double prezzo, String modello, String alimentazione) {
-		this.targa = targa;
-		this.produttore = produttore;
-		this.prezzo = prezzo;
-		this.modello = modello;
-		this.alimentazione = alimentazione;
+	public Veicolo(Scanner input) {
+		
+		System.out.println("Inserire targa: ");
+		this.targa = input.next();
+		
+		System.out.println("Inserire produttore: ");
+		this.produttore =input.next();
+		
+		System.out.println("Inserire prezzo: ");
+		this.prezzo = input.nextInt();
+		
+		System.out.println("Inserire modello: ");
+		this.modello = input.next();
+		
+		System.out.println("Inserire alimentazione: ");
+		this.alimentazione = input.next();
 
 	}
 
@@ -25,11 +37,11 @@ public abstract class Veicolo {
 		return produttore;
 	}
 
-	public Double getPrezzo() {
+	public Integer getPrezzo() {
 		return prezzo;
 	}
 
-	public void setPrezzo(Double prezzo) {
+	public void setPrezzo(Integer prezzo) {
 		this.prezzo = prezzo;
 	}
 
@@ -39,6 +51,14 @@ public abstract class Veicolo {
 
 	public String getAlimentazione() {
 		return alimentazione;
+	}
+	
+	public String toString() {
+		return ("TARGA: "+this.targa + "\n"
+				+ "PRODUTTORE: "+this.produttore + "\n"
+				+ "PREZZO: "+this.prezzo+"\n"
+				+"MODELLO: "+this.modello+"\n"
+				+"ALIMENTAZIONE: "+this.alimentazione);
 	}
 
 }

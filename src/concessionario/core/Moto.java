@@ -1,17 +1,34 @@
 package concessionario.core;
 
-public class Moto extends Veicolo {
- private Integer altezzaSedile;
+import java.util.*;
+
+public class Moto extends Veicolo
+{
+ private Double altezzaSedile;
  
-	public Moto(String targa, String produttore, Double prezzo, String modello, String alimentazione,Integer altezzaSedile){
-		super(targa, produttore, prezzo, modello, alimentazione);
-		this.altezzaSedile=altezzaSedile;
+	public Moto(Scanner input)
+	{
+		super(input);
+		System.out.println("Inserire altezza sedile: ");
+		this.altezzaSedile=input.nextDouble();
 		
 	}
 
-	public Integer getAltezzaSedile() {
+	public Double getAltezzaSedile()
+	{
 		return altezzaSedile;
 	}
 	
+	
+	public String toString()
+	{
+		return ("MOTO \n"
+				+"TARGA: "+getTarga() + "\n"
+				+ "PRODUTTORE: "+getProduttore() + "\n"
+				+ "PREZZO: "+getPrezzo()+"\n"
+				+"MODELLO: "+getModello()+"\n"
+				+"ALIMENTAZIONE: "+getAlimentazione()+"\n"
+				+"ALTEZZA SEDILE: "+this.altezzaSedile);
+	}
 
 }

@@ -1,4 +1,7 @@
+
 package concessionario.core;
+
+import java.util.*;
 
 public class Dipendente {
 
@@ -7,15 +10,24 @@ public class Dipendente {
 	private String cognome;
 	private boolean amministratore;
 	
-	public Dipendente(Integer cid, String nome, String cognome, boolean amministratore ) {
-		this.cid = cid;
-		this.nome = nome;
-		this.cognome = cognome;
-		this.amministratore= amministratore;
+	public Dipendente(Scanner input ) 
+	{
+		System.out.println("Inserire CID: ");
+		this.cid = input.nextInt();
+		
+		System.out.println("Inserire nome: ");
+		this.nome = input.next();
+		
+		System.out.println("Inserire cognome: ");
+		this.cognome = input.next();
+		
+		System.out.println("E' un amministratore? ");
+		this.amministratore= input.nextBoolean();
 		
 	}
 	
-	public Dipendente(Integer cid, String nome, String cognome ) {
+	public Dipendente(Integer cid, String nome, String cognome ) 
+	{
 		this.cid = cid;
 		this.nome = nome;
 		this.cognome = cognome;
@@ -25,28 +37,40 @@ public class Dipendente {
 	
 	
 	
-	public Integer getCid() {
+	public Integer getCid()
+	{
 		return cid;
 	}
 
-	public String getNome() {
+	public String getNome()
+	{
 		return nome;
 	}
 
-	public String getCognome() {
+	public String getCognome()
+	{
 		return cognome;
 	}
 
-	public String toString() {
-		return this.cid + ". " + this.nome + " " + this.cognome;
+	public String toString() 
+	{
+		return ("NOME: "+this.nome + "\n"
+				+ "COGNOME: "+this.cognome + "\n"
+				+ "CID: "+this.cid+"\n"
+				+ "AMMINISTRATORE: "+this.amministratore);
 	}
 
-	public boolean isAmministratore() {
+	public boolean isAmministratore()
+	{
 		return amministratore;
 	}
 
-	public void setAmministratore(boolean amministratore) {
+	public void setAmministratore(boolean amministratore)
+	{
 		this.amministratore = amministratore;
 	}
 	
 }
+	
+	
+	
